@@ -1,0 +1,2466 @@
+
+format D: /fs:NTFS /p:1
+
+
+
+
+
+
+	pending update windows
+	зависшее обновление windows
+
+загружаемся по F8
+вибираем пунк с утилитами для восстановления системи
+вибираем консоль
+удаляем содержимое папки C:\Windows\SoftwareDistribution\download
+виполняем команду dism.exe /image:C:\ /cleanup-image /revertpendingactions
+перезагружаемся
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+chcp
+
+chcp 866
+chcp 1251
+
+    874 — Thai
+    932 — Japanese
+    936 — Chinese (simplified) (PRC, Singapore)
+    949 — Korean
+    950 — Chinese (traditional) (Taiwan, Hong Kong)
+    1200 — Unicode (BMP of ISO 10646, UTF-16LE)
+    1201 — Unicode (BMP of ISO 10646, UTF-16BE)
+    1250 — Latin (Central European languages)
+    1251 — Cyrillic
+    1252 — Latin (Western European languages, replacing Code page 850)
+    1253 — Greek
+    1254 — Turkish
+    1255 — Hebrew
+    1256 — Arabic
+    1257 — Latin (Baltic languages)
+    1258 — Vietnamese
+    65000 — Unicode (BMP of ISO 10646, UTF-7)
+    65001 — Unicode (BMP of ISO 10646, UTF-8)
+
+
+
+
+
+
+
+
+
+
+
+
+
+	Change the time zone
+
+timedatectl list-timezones | grep -i kiev
+
+timedatectl set-timezone “Europe/Kiev”
+
+
+
+
+
+
+
+
+
+
+	enable flash player for chrome
+
+
+``
+Windows Registry Editor Version 5.00
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Google\Chrome]
+"RunAllFlashInAllowMode"=dword:00000001
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Google\Chrome\PluginsAllowedForUrls]
+"1"="https://ok.ru/game/"
+``
+
+
+
+
+
+
+
+
+
+
+
+Teamviewer QS
+
+https://download.teamviewer.com/download/TeamViewerQS.exe
+
+https://v.ht/TmvwR
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+psexec
+
+Ключ -d говорит PsExec что ненужно дожидаться выполнения команды, а достаточно лишь запустить её, и забыть. В этом случае мы не получим выходных данных от консольной утилиты, но зато сможем не дожидаясь завершения предыдущей команды запускать другие. Это очень полезно, если вам необходимо запустить, например установщик программы на нескольких компьютерах.
+
+
+Если вы хотите выполнить команду сразу на нескольких компьютерах, вам пригодится возможность прочитать их имена из текстового файла списка.
+psexec @c:\comps.txt systeminfo.exe 
+
+
+
+net use /delete \\servername\foldername
+
+net stop workstation /y
+net start workstation
+
+
+
+
+psexec \\192.168.0.113 -u Administrator -p PAPA cmd
+
+
+
+
+
+
+	How to Create or Add User Account Using Command Prompt in Windows 10?
+
+net user
+net user /add Mara key=porol
+“net user /add <account name>” without “”.
+
+	to remove user account
+
+net user /delete Mara
+
+
+
+
+
+
+Изменить сеть на частную (домашнюю) на Windows 10
+
+secpol.msc
+сеть_2 > сетевое расположение > Личное и Пользователь не может менять расположение
+
+	regedit
+
+В реестре нужно найти ключ HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\NetworkList\Profiles.
+Этот ключ должен содержать как минимум один ключ с именем типа {84464.....E00}. Каждый такой ключ соответствует одной сети которая отображается в "Центре управления сетями". Соотнести ключ с нужной сетью можно по параметру "ProfileName". Этот параметр содержит имя сети, которое отображается в "Центре управления сетями".
+
+Если у вас несколько профилей в "Центре управления сетями", тогда по параметру "ProfileName" находите нужный ключ и, в этом ключе, изменяете значение параметра "Category".
+
+Значения параметра "Category" могут быть следующие:
+
+0 - "Общедоступная сеть".
+1 - "Частная сеть".
+2 - Сеть домена.
+Изменяете параметр "Category" на одно из этих значений и закрываете редактор. Если сразу после этого тип сети не изменился в "Центре управления сетями" тогда перезагрузите Windows.
+
+
+	powershell
+
+Set-NetConnectionProfile -Name "Ethernet 2" -NetworkCategory Private (или Public)
+
+
+
+
+
+
+
+
+
+
+
+
+---------------- диспетчер облікових даних ---------------------
+
+
+	Opening Windows Credential Manager with the Command Prompt
+
+rundll32.exe keymgr.dll, KRShowKeyMgr
+
+cmdkey
+
+	Opening Windows Credential Manager with the Command Prompt
+
+net use \\share /d
+net use \\share\folder password /user:account
+
+----------------------------------------------------------------
+
+
+
+
+"Группировка сетевых участников"
+Peer Networking Grouping
+PNRP
+
+Поставщик домашней группы»
+HomeGroupProvider
+
+Протокол PNRP
+PNRPsvc
+Peer Name Resolution Protocol
+
+Служба публикации имён компьютеров PNRP
+PNRP Machine Name Publication Service
+PNRPAutoReg
+
+чтобы устройство отображалось в Проводнике, нужно изменить настройки запуска службы 
+«Публикация ресурсов обнаружения функции»
+автоматически
+
+
+
+
+
+
+
+
+
+
+центр управления сетями и общим доступом
+
+control.exe /name Microsoft.NetworkandSharingCenter
+explorer.exe shell:::{8E908FC9-BECC-40f6-915B-F4CA0E70D03D}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	disable file sharing
+
+net share
+net share C$ /DELETE
+net stop lanmanserver
+net share
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	powershell
+
+Get-AppxPackage
+copy PackageFullName e.x. Camera
+
+Remove-AppxPackage Camera*
+
+Get-AppxPackage | Select Name, PackageFullName
+Remove-AppxPackage Microsoft.Windows.Cortana_1.4.8.176_neutral_neutral_cw5n1h2txyewy
+windows.immersivecontrolpanel_10.0.2.1000_neutral_neutral_cw5n1h2txyewy
+
+
+Uninstall 3D Builder: Get_-AppxPackage *3dbuilder* | Remove-AppxPackage_
+Uninstall ACG Player: Get-AppxPackage *acg* | Remove-AppxPackage
+Uninstall Alarms and Clock: Get-AppxPackage *alarms* | Remove-AppxPackage
+Uninstall Calculator: Get-AppxPackage *calculator* | Remove-AppxPackage
+Uninstall Calendar and Mail: Get-AppxPackage *communications* | Remove-AppxPackage
+Uninstall Camera: Get-AppxPackage *camera* | Remove-AppxPackage
+Uninstall Dolby Access: Get-AppxPackage *dolbyaccess* | Remove-AppxPackage
+Uninstall Fitbit Coach: Get-AppxPackage *fitbitcoach* | Remove-AppxPackage
+Uninstall Get Office: Get-AppxPackage *officehub* | Remove-AppxPackage
+Uninstall Get Skype: Get-AppxPackage *skypeapp* | Remove-AppxPackage
+Uninstall Get Started: Get-AppxPackage *getstarted* | Remove-AppxPackage
+Uninstall Groove Music: Get-AppxPackage *zunemusic* | Remove-AppxPackage
+Uninstall Maps: Get-AppxPackage *maps* | Remove-AppxPackage
+Uninstall Microsoft Solitaire Collection: Get-AppxPackage *solitairecollection* | Remove-AppxPackage
+Uninstall Money: Get-AppxPackage *bingfinance* | Remove-AppxPackage
+Uninstall Movies & TV: Get-AppxPackage *zunevideo* | Remove-AppxPackage
+Uninstall News: Get-AppxPackage *bingnews* | Remove-AppxPackage
+Uninstall OneNote: Get-AppxPackage *onenote* | Remove-AppxPackage
+Uninstall People: Get-AppxPackage *people* | Remove-AppxPackage
+Uninstall Phone Companion: Get-AppxPackage *windowsphone* | Remove-AppxPackage
+Uninstall Phototastic Collage: Get-AppxPackage *phototastic* | Remove-AppxPackage
+Uninstall Photos: Get-AppxPackage *photos* | Remove-AppxPackage
+Uninstall PicsArt: Get-AppxPackage *picsart* | Remove-AppxPackage
+Uninstall Plex: Get-AppxPackage *plex* | Remove-AppxPackage
+Uninstall Store: Get-AppxPackage *windowsstore* | Remove-AppxPackage
+Uninstall Sports: Get-AppxPackage *bingsports* | Remove-AppxPackage
+Uninstall Voice Recorder: Get-AppxPackage *soundrecorder* | Remove-AppxPackage
+Uninstall Weather: Get-AppxPackage *bingweather* | Remove-AppxPackage
+Uninstall Xbox: Get-AppxPackage *xbox* | Remove-AppxPackage
+
+
+
+
+Likewise, you can remove the "Provisioned" applications (aka: crap that gets installed per user) via this method
+
+Get-AppxProvisionedPackage -Online | Select DisplayName, PackageName
+Remove-AppxProvisionedPackageMicrosoft.ZuneMusic_2019.6.11821.0_neutral_~_8wekyb3d8bbwe
+Or... to remove ALL Apps that you can, app or provisionedapp, you can do this:
+
+Just a warning: This will uninstall the Windows Store. That's not an issue for me, but uninstalling everything isn't for the faint of heart.
+
+Get-AppxPackage | Remove-AppxPackage
+Get-AppxProvisionedPackage -Online | Remove-AppxProvisionedPackage -online
+As mentioned in comments, it's probably wise not to completely remove the Windows Store. I haven't tried this yet, but this (in the comments) looks to be ballpark of what I'd use:
+
+Get-AppxPackage -AllUsers | where-object {$_.name –notlike "*store*"} | Remove-AppxPackage
+Get-appxprovisionedpackage –online | where-object {$_.packagename –notlike "*store*"} | Remove-AppxProvisionedPackage -online
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+~~~
+
+
+nbtstat -A 192.168.0.114
+
+
+c:\ps\PsExec.exe \\192.168.1.114 -u domain\user -p password cmd
+
+runas /user:administrator cmd
+type password
+
+runas /user:domainname\username program
+
+
+
+
+
+
+psexec buh_pc1, buh_pc2 shutdown –f –r –t 0
+psexec @c:list_of_buh_pc.txt shutdown –f –r –t 0
+При использовании ключа “-c” указаннаяпрограмма сначала скопируется с вашего ПК на удаленный, а потом выполнится. Ключ “-i” заставляет указанную команду запустится в интерактивном режиме. Если вы хотите, чтобы после запуска определенной команды PsExec не ждал ее окончания, а вывернул вам управление (командную строку), нужно указать параметр “-d”:
+
+psexec -d buh_pc1 chkdsk
+
+
+
+
+
+
+systeminfo | findstr /B /C"Domain"
+echo %usendomain%
+PCman05 PCman04 PCman03
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+login as admin in windows 10
+
+Go to Run –> control userpasswords2
+Go to Advanced tab and then click on Advanced button under Advanced user management
+Under Users folder, you will find all the local users created on the system
+Right click “Administrator” user and go to Properties
+Uncheck “Account is Disabled” option and Press OK
+
+Go to Run –> control userpasswords2
+Go to Advanced tab and then click on Advanced button under Advanced user management
+Under Users folder, you will find all the local users created on the system
+Right click “Administrator” user and go to Properties
+Uncheck “Account is Disabled” option and Press OK
+
+Enable hidden administrator account using Group Policy
+If you are a systems administrator, you can easily enable default administrator user using Windows Group Policy:
+
+Open Group Policy Editor by going to Run –> gpedit.msc
+Navigate to 
+Computer Configuration –> Windows Settings –> Security Settings –> Local Policies –> Security Options
+In the right-hand pane, open
+“Accounts: Administrator account status.
+This is disabled by default. Enable to setting to enable the administrator account.
+
+Create a new administrator account in Windows 10
+Go to Run –> lusrmgr.msc
+Go to Users and select New user from Actions menu.
+Type the username and password (Other details are optional)
+Once the user is created, double-click the username to open account Properties.
+Go to Member Of tab, click the Add button.
+Type administrator in the object name field and press Check Names button.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Get-Command -Module PackageManagement
+
+В текущей версии модуля (v 1.0.0.1) имеются такие команды:
+
+Find-Package — поиск пакета (программы) в доступных репозиториях
+Get-Package — получить список установленных пакетов
+Get-PackageProvider — список провайдеров (поставщиков пакетов), доступных на компьютере
+Get-PackageSource — список доступных источников пакетов
+Install-Package — установить пакет (программу) на компьютере
+Register-PackageSource — добавить источник пакетов для провайдера
+Save-Package — сохранить пакет локально без его установки
+Set-PackageSource — задать провайдер в качестве источника пакетов
+Uninstall-Package — удалить программу (пакет)
+Unregister-PackageSource — удалить поставщика из списка источников пакетов
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+підключення до віддаленного робочого стола
+
+mstsc.exe
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+netstat -a -o
+tasklisk /svc
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+echo %username%
+echo %userdomain%
+
+
+
+
+
+
+
+
+
+
+WMIC computersystem where caption='current_pc_name' rename new_pc_name
+
+
+
+
+
+
+
+
+
+
+
+nircmd infobox "msg" "title"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	create new folder
+
+ctrl + shift + N
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Turn Off Recent Items Through Group Policy Editor
+
+If you’re managing a computer with multiple users, and using Windows 10 Pro, you can also tweak this setting through Group Policy. Press “Win + R” to open the Run box and type “gpedit.msc”. Under “User Configuration > Administrative Templates”, click “Start Menu and Taskbar”.
+
+gpupdate /force
+
+
+
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\Explorer
+
+3. Double-click on the newly created value and set the value data to “1.”
+
+You’ve now successfully disabled recent items and frequent places in Windows 10. To make the changes take effect, restart the system. If you want to revert the changes, change the value data back to “0” to simply delete the “NoRecentDocsHistory” value.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+net user Visitor /add /active:yes
+net user *
+net localgroup users Visitor /delete
+net localgroup guests Visitor /add
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	add hardware wizard - майстер становлення устаткування
+hddwiz
+
+	program and features
+appwiz.cpl
+
+	optional features
+optionalfeatures
+
+	add new program - установить программу из сети
+control appwiz.cpl,,1
+
+	add remove windows component
+control appwiz.cpl,,2
+
+	set program access & default
+control appwiz.cpl,,3
+
+	admin tools - панель управления > администрирование
+control admintools
+
+	тоже самое что control userpasswords2
+netplwiz
+
+	менеджер авторизации
+azman.msc
+
+	резервное копирование и восстановление - Backup and Restore Utility
+sdclt
+
+	bluetooth transfer wizzard
+fsquirt
+
+	charmap
+charmap
+
+	check disk
+chkdsk
+
+	clear type turn off and on
+cttune
+
+	color managment
+colorcpl.exe
+
+	component services - ?????
+dcomcnfg
+comexp.msc
+
+	computer managment --- ??? - керування компьютером - (управление дисками)
+compmgmt.msc
+
+	сохранение имен пользователей и паролей
+credwiz
+
+	data and time propertien - настройка времени
+timedate.cpl
+
+	Додавання пристою - device pairing wizard
+DevicePairingWizard
+
+	засіб калібрації дігітайзера digitizer
+tabcal
+
+	direct x control panel
+direcx.cpl
+
+	dxdiag
+dxdiag
+
+	disk cleanup utility - !!!!!!!!!!!!!!
+cleanmgr
+
+	defragmentation
+defrag - cli
+dfrgui
+
+	disk managment --- !!!!!!!! --- керування дисками
+diskmgmt.msc
+
+	disk part - cli - !!!!!
+diskpart
+
+	display color calibration
+dccw
+
+	DPI scaling
+dpiscaling
+
+control desktop
+desk.cpl
+control color
+documents
+downloads
+verifier - driver verifier
+dvdplay
+
+	EDIT ENVIROMENT VARIABLES
+rundll32.exe sysdm.cpl,EditEnviromentVariables
+
+	Encrypting FIle Transfer WIzzard
+rekeywiz
+
+	Event Viewer - !!!!!!!!!!!!!!!!!!!!
+eventvwr.msc
+
+	file signature verification tools - проверка подписи файла
+sigverif
+
+	FIRE WALL
+firewall.cpl
+wf.msc --- то что надо
+
+
+	факси й сканнування у windows
+	scan fax
+wfs
+
+
+control folders
+control fonts	-	fonts
+fontview arial.ttf
+
+	game controllers
+joy.cpl
+
+------------------------------------------------------
+
+	LOCAL GROUP POLICY EDITOR
+gpedit.msc
+
+	LOCAL SECURITY POLICY
+secpol.msc
+
+	LOCAL USER AND GROUPS
+lusrmgr.msc
+
+	PERFOMANCE MONITOR - !!!!!!!!!!!!!!!
+perfmon.msc
+
+	system configuration utility
+msconfig
+
+	system file cheker
+sfc
+
+	відновлення системи
+rstrui
+
+
+
+---------------------------------------
+
+
+	інтернет властивости
+inetcpl.cpl
+
+	iSCSI что єто?
+
+control keyboard
+
+	language pack installer
+lpksetup
+
+
+
+logoff
+
+
+
+	microsoft malicious software removal tool	
+mrt
+
+	microsoft managemt console
+mmc
+
+	ms support diagnostic tool
+msdt
+
+
+
+control mouse
+main.cpl
+
+
+	control netconnections - МЕРЕЖЕВІ ПІДКЛЮЧЕННЯ
+control netconnections
+ncpa.cpl
+
+
+	screan keyboard - екранная клавиатура
+osk
+
+
+
+
+	POWER CFG CPL
+powercfg.cpl
+powercfg.exe
+
+
+
+control printers
+
+
+
+
+
+	LIST ALL PRINTUI.DLL OPTIONS
+
+Використання: rundll32 printui.dll,PrintUIEntry [параметри] [@командний файл]
+ /a[файл] ім'я двійкового файлу
+ /b[ім’я] основне ім’я принтера
+ /c[ім’я] UNC-ім’я комп’ютера, на якому виконується команда
+ /dl видалення локального принтера
+ /dn видалення з’єднання з мережевим принтером
+ /dd видалення драйвера принтера
+ /e відображення настройок друку
+ /f[файл] INF-файл або файл виводу
+ /F[файл] розташування INF-файлу, від якого може залежати визначений за допомогою ключа /f INF-файл
+ /ga додавання підключень комп’ютерів до принтера (підключення буде поширено на комп’ютер користувача під час входу до системи)
+ /ge нумерація підключень комп’ютерів до принтера
+ /gd видалення підключень комп’ютерів до принтера (підключення видаляється під час входу користувача до системи)
+ /h[arch]архітектура драйвера може бути x86, x64 або Itanium 
+ /ia інсталяція драйвера принтера з використанням INF-файлу
+ /id інсталяція драйвера принтера з використанням майстра інсталяції драйверів принтера
+ /if установлення принтера з використанням INF-файлу
+ /ii установлення принтера за допомогою майстра встановлення принтерів та INF-файлу
+ /il установлення принтера за допомогою майстра встановлення принтерів
+
+
+
+
+
+ private charcter editor
+eudcedit
+
+
+	регіональні настройки - Reginal Setting (language date time forman keyboard_locale)
+intl.cpl
+
+
+
+	remote assistance - віддалена допомога у Windows
+msra
+
+
+	підключення до віддаленого робочого стола
+mstsc
+
+
+	Монитор рисурсов - Resource Monitor
+resmon
+
+
+
+	result set of policy --- ???????????????????????????
+rsop.msc
+
+
+
+	task scheduled - !!!!!!!!!!!!!!!!!!!!!!!!! 
+control schedtasks
+
+
+	screanshoot sniping tools
+snippingtool
+
+
+	Обслуговування та безпека
+wscui.cpl
+
+
+	services
+services.msc
+
+
+	share folder wizzard
+shrpubw
+
+
+	shared folders - !!!!!!!!!!!!!!!!!!!!!!!!
+fsmgmt.msc
+
+
+	software licensing activation
+slui
+
+	
+	звук
+mmsys.cpl
+sndvol.cpl
+
+
+	центр синхронризации
+mobsync
+
+
+msinfo
+recdisc
+taskmgr
+
+
+
+
+	трастет платформ TPM --- ???
+
+tmpinit
+
+
+control userpasswords2
+
+	UAC settings - параметри служби захисту користовачів
+UserAccountControlSettings
+
+
+
+isoburn C:\image.iso
+
+
+
+	ЄКРАННА ЛУПА
+magnify
+
+
+	windows managment instrumentation ------ ????
+wmimgmt.msc
+
+
+	діагностика пятями windows
+mdsched
+
+
+	центр подджержи портативніх ПК
+mblctr
+
+
+
+
+powershell
+powershell_ise
+
+	windows script host (VBscript)
+wscript ssscript.vbs
+
+
+
+	АВТОНОМНИЙ ИСТАЛЯТОР WINDOWS UPDATE
+wusa
+
+
+winver
+write
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	EXEL
+
+
+
+	обьеденить ячейки в одну сохранив значения
+
+
+=CONCATENATE(A12, CHAR(10), B12, CHAR(10), C12, CHAR(10), D12)
+
+=CONCATENATE(A2, "-", A3, "-", A4, "-", A5, "-", A6, "-", A7)
+
+=TEXTJOIN(",",TRUE,A2:C7)
+
+
+	work for me
+
+=TEXTJOIN(CHAR(10);TRUE;B75:B80)
+
+затем нажать "переносить текст" в меню "Основне"
+
+9x13
+10x15
+10x18
+13x18
+13x20
+20x25
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	disable cortana
+
+taskkill /f /im SearchUI.exe
+move %windir%\SystemApps\Microsoft.Windows.Cortana_cw5n1h2txyewy %windir%\SystemApps\Microsoft.Windows.Cortana_cw5n1h2txyewy.000
+
+or
+
+@echo off
+rem batch script provided by TrishTech.com
+cd %windir%\SystemApps\Microsoft.Windows.Cortana_cw5n1h2txyewy
+
+takeown /f SearchUI.exe
+icacls SearchUI.exe /grant administrators:F
+@ administrators:F предоставление пользователю Administrators полного доступа 
+
+taskkill /f /im SearchUI.exe
+rename SearchUI.exe SearchUI.exe.001
+
+taskkill /f /im SearchUI.exe
+rename SearchUI.exe SearchUI.exe.001
+
+taskkill /f /im SearchUI.exe
+rename SearchUI.exe SearchUI.exe.001
+
+taskkill /f /im SearchUI.exe
+rename SearchUI.exe SearchUI.exe.001
+
+
+
+
+
+Команда TAKEOWN используется для смены владельца файла или каталога на локальном или удаленном компьютере. В качестве владельца может быть установлен либо текущий пользователь, либо группа Администраторы.
+
+TAKEOWN /F C:\myfile.txt - сделать текущего пользователя владельцем файла C:\myfile.txt
+
+
+
+Команда iCACLS позволяет отображать или изменять списки управления доступом (Access Control Lists (ACLs) ) к файлам и папкам файловой системы. Утилита iCACLS.EXE является дальнейшим усовершенствованием утилиты управления доступом CACLS.EXE.
+
+/grant[:r] Sid:perm — предоставление указанных прав доступа пользователя. С параметром :r эти разрешения заменяют любые ранее предоставленные явные разрешения. Без параметра :r разрешения добавляются к любым ранее предоставленным явным разрешениям.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+PrtScn
+
+win + prtscn
+
+screenshots active windows
+alt + prtscn
+
+Fn + PrtScn - makes a screenshot of the whole screen and copies it to the clipboard. It is the equivalent of pressing the standard PrtScn key.
+Fn + Windows + PrtScn - takes a screenshot of the whole screen and saves it as a file on the hard drive, without using any other tools. Windows stores the screenshot in the Pictures library, in the Screenshots folder. It is the same as pressing Windows + PrtScn on a standard keyboard.
+Fn + Alt + PrtScn - takes a screenshot of the active window. It is the equivalent of pressing Alt + PrtScn on a standard keyboard.
+
+capture a region
+win + shift + s
+
+snipping tools
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+elinks -dump -dump-charset Windows-1251
+
+  -no-numbering         Disable link numbering in dump output
+  -no-references        Disable printing of link references in dump output
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Назва аварійного застосунку: WINWORD.EXE, версія: 16.0.11727.20244, позначка часу: 0x5d173304
+Назва аварійного модуля: wwlib.dll, версія: 16.0.11727.20236, позначка часу: 0x5d1531b1
+Код винятку: 0xc0000005
+Зсув помилки: 0x000000000007b444
+Код аварійного процесу: 0x197c
+Час запуску аварійного застосунку: 0x01d57375c46ed1d5
+Шлях до аварійного застосунку: C:\Program Files\Microsoft Office\Root\Office16\WINWORD.EXE
+Шлях до аварійного модуля: C:\Program Files\Microsoft Office\Root\Office16\wwlib.dll
+Код звіту: 884ee073-8811-421b-9598-3543a66c0057
+Повне ім'я аварійного пакету: 
+Код аварійного застосунку, що стосується пакету: 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+temperature.exe > msg.txt
+set /p msg= < msg.txt
+prismcom.exe usb "%msg%"
+
+
+
+SETLOCAL ENABLEEXTENSIONS
+SET me=%~n0
+SET parent=%~dp0
+
+
+
+%~I         - expands %I removing any surrounding quotes ("")
+%~fI        - expands %I to a fully qualified path name
+%~dI        - expands %I to a drive letter only
+%~pI        - expands %I to a path only
+%~nI        - expands %I to a file name only
+%~xI        - expands %I to a file extension only
+%~sI        - expanded path contains short names only
+%~aI        - expands %I to file attributes of file
+%~tI        - expands %I to date/time of file
+%~zI        - expands %I to size of file
+%~$PATH:I   - searches the directories listed in the PATH
+               environment variable and expands %I to the
+               fully qualified name of the first one found.
+               If the environment variable name is not
+               defined or the file is not found by the
+               search, then this modifier expands to the
+               empty string
+
+
+
+Волшебные переменные % n содержат аргументы, используемые для вызова файла: 
+%0 - это путь к самому bat файлу, %1 - это первый аргумент после, %2 - второй и т.д..
+
+Поскольку аргументы часто являются файловыми путями, существует дополнительный синтаксис для извлечения частей пути. 
+~d - это диск, 
+~p - это путь (без диска), 
+~n - это имя файла. Они могут быть объединены, поэтому 
+~dp - это диск + путь.
+
+%~dp0 поэтому очень полезен в летучей мыши: это папка, в которой находится исполняемый файл bat.
+
+~t - метка времени
+~z - размер
+
+
+
+
+
+
+
+
+
+
+@echo off 
+set "FILENAME=%date:~6,4%%date:~3,2%%date:~0,2%.txt"
+if exist "%FILENAME%" for %%i in ("%FILENAME%") do echo %%~zi
+pause
+exit /b
+
+
+
+@echo off 
+set "FILENAME=%date:~6,4%%date:~3,2%%date:~0,2%.txt"
+call :label "%FILENAME%"
+pause
+exit /b
+
+:label 
+echo %~z1
+goto :eof
+
+
+set "FILENAME=%date:~6,4%%date:~3,2%%date:~0,2%.txt" 
+if exist "%FILENAME%" for %i in ("%FILENAME%") do @echo %~zi
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+regedit
+
+
+Delete values
+A small adjustment in the reg file will cause the value to be removed from the registry. This is done by assigning the value - (minus).
+
+Windows Registry Editor Version 5.00 
+
+[HKEY_CURRENT_USER\Software\ZEDA\TestKey] 
+
+"Testval1"=-
+
+Delete Keys
+Deleting a entire key is done the same way. In this case you put the minus sign in front of the key name, within the brackets.
+
+Windows Registry Editor Version 5.00 
+
+[-HKEY_CURRENT_USER\Software\ZEDA\TestKey]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#sublime_text
+
+go to Preference > Browse Packages ...
+
+https://www.dropbox.com/s/rug0kg3gae8aha2/sublime_russian_english_dictonary.zip?dl=0&file_subpath=%2Fsublime_russian_english_dictonary
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#chrome
+#google_chrome
+
+Ctrl + Shift + I
+Ctrl + Shift + P
+screenshoot
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Аппроксимированная синусоида в источниках бесперебойного электропитания Обсудить Редактировать статью 0 Аппроксимированная синусоида представляет собой форму сигнала переменного тока, которая условно приближается к чистой синусоиде. Она может иметь ступенчатую форму огибающей, быть представлена последовательностью импульсов прямоугольной или трапецеидальной формы разной полярности. Сигнал переменного тока, имеющий форму аппроксимированной синусоиды, присутствует на выходе большинства применяемых источников бесперебойного питания (ИБП). Назначение источников бесперебойного питания Основной задачей ИБП является сохранение питающего потребителей переменного напряжения при его внезапном пропадании в сети. Они не выполняют функцию стабилизации напряжения сети, а являются аварийными источниками напряжения переменного тока с аппроксимированной синусоидой. Бесперебойники не предназначены для продолжительной работы подключенного к ним оборудования в случае аварии на линиях сетевого напряжения. ИБП должны обеспечить работу потребителей в течение времени, достаточном для завершения процессов, которые нельзя прерывать внезапно. Во время работы ИБП с аппроксимированной синусоидой будут созданы условия для штатного отключения нагрузки. Это сохранит его работоспособность при дальнейшем использовании. Часто можно встретить ссылку на UPS-источник бесперебойного питания. UPS в ней является аббревиатурой английского обозначения ИБП. Классификация источников В зависимости от требований, предъявляемых к качеству питающего переменного напряжения, UPS-источники бесперебойного питания можно разделить на несколько видов: off-line источники, являющиеся аварийными источниками резервного типа; line-interactive или линейно-интерактивные источники, способные стабилизировать сетевое напряжение при незначительных его отклонениях от номинального значения, и переходящие в режим аварийного источника питания с аппроксимированной синусоидой при его полном пропадании; on-line, или ИБП с двойным преобразованием электрической энергии, обеспечивающие подключенную нагрузку стабилизированным сетевым напряжением при значительных его перепадах и выполняющие функции аварийного источника при полном его отключении. В состав бесперебойного источника любого вида входит аккумуляторная батарея, которая является накопителем электрической энергии. В зависимости от требований, предъявляемых к качеству питания устройств, являющихся нагрузкой ИБП с аппроксимированной синусоидой, применяются те или иные схемотехнические решения. ИБП вида off-line Пассивный ИБП этого вида является источником резервного действия. Его устройство коммутации при нормальных параметрах качества сетевого напряжения обеспечивает непосредственное подключение нагрузки к питающей сети. В случае кратковременного пропадания напряжения на входе ИБП коммутирующее устройство переводит питание потребителей на аварийный (резервный) режим. Источником электрической энергии в этом случае является встроенный аккумулятор. Его напряжение постоянного тока инвертором преобразуется в модифицированную синусоиду напряжения переменного тока, которое через контакты электромагнитного реле коммутатора поступает для питания нагрузки. Для подзарядки аккумуляторной батареи (АКБ) служит выпрямитель напряжения внешней питающей сети. Для ее защиты от высокочастотных помех, возникающих при работе импульсного инвертора, в ИБП предусмотрен фильтр. Его элементы также защищают устройства нагрузки от кратковременных скачков превышения сетевого напряжения. Линейно-интерактивные источники Line-interactiv ИБП, в отличие от источника резервного действия, способен стабилизировать напряжение сети при непосредственном подключении нагрузки к ней через контакты электромагнитного реле. Это обеспечивается использованием автотрансформатора во входной цепи. Переключение его обмоток производится автоматически в зависимости от величины сетевого напряжения. При его увеличении или уменьшении переменное напряжение на его выходе сохраняет номинальное значение 220 В. Автотрансформатор наиболее распространенных ИБП этого вида осуществляет регулирование в диапазоне (150-270) В изменения напряжения внешней питающей сети. Переключение контактора и переход на аварийный режим питания нагрузки модифицированной синусоидой происходит при чрезмерном изменении сетевого напряжения, выходящим за диапазон регулирования. Точность регулирования определяется числом отводов (ступеней) автотрансформатора. В аварийном режиме питания устройств нагрузки переменным напряжением аппроксимированной синусоиды работа происходит так же, как в ИБП вида off-line. ИБП вида on-line Двойное преобразование электрической энергии в источниках бесперебойного питания этого вида позволяет получать аппроксимированную синусоиду выходного переменного напряжения, приближающуюся по форме к чистому синусу. Сетевое напряжение, преобразованное в постоянное напряжение выпрямителем, затем претерпевает обратное преобразование инвертором в переменное напряжение, которое используется для питания нагрузки. Встроенный аккумулятор заряжается постоянным током выпрямителя и включается в работу в аварийном режиме. Накопленная им энергия постоянного тока преобразуется инвертором в выходное переменное напряжение, питающее оборудование нагрузки. Схема источника такого вида допускает подключения дополнительной внешней АКБ для ИБП. При восстановлении сетевого напряжения в пределах его нормального значения происходит переключение питания нагрузки от первичной сети переменного тока. Электрическая емкость АКБ для ИБП определяет время, в течение которого потребители могут работать при внезапном пропадании сетевого напряжения. Технические характеристики ИБП Выбор ИБП производится на основе его технических характеристик. К техническим характеристикам, определяющим качество выполнения требований, предъявляемых к изделиям этого назначения относятся: мощность на выходе источника с подключенной нагрузкой, измеряемая в вольт-амперах (ВА) или ваттах (Вт); диапазон выходного напряжения с подключенной нагрузкой, измеряемый в вольтах (V); время переключения, определяющее время перехода питания нагрузки в резервном режиме от АКБ, измеряемое в миллисекундах (ms); диапазон входного сетевого напряжения, в пределах которого ИБП способен стабилизировать выходное напряжения без перехода на резервный режим питания от АКБ; коэффициент нелинейных искажений, определяющий в процентном соотношении отличие формы выходного сигнала от чистой синусоиды; время работы в автономном резервном режиме питания от АКБ при подключенной нагрузке, определяемое электрической емкостью внутреннего аккумулятора; срок службы собственных АКБ, зависящий от технологии их изготовления. При выборе ИБП не последнюю роль играет и цена бесперебойника. Она напрямую зависит от схемотехнических решений, примененных разработчиком при создании выбранной потребителем модели, и составляет от двух до десятков тысяч рублей. Области применения UPS источники бесперебойного питания могут использоваться совместно с активной нагрузкой - устройствами, в состав которых входят импульсные блоки питания. ИБП не применяются для питания потребителей, имеющих значительную реактивную индуктивную составляющую (силовые сетевые трансформаторы электронных устройств старых моделей, обмотки двигателей, насосы отопительных бытовых котлов). Каждая из существующих схем бесперебойных источников питания рассчитана на определенный круг потребителей с учетом своих преимуществ и недостатков. Заключение В статье дан краткий обзор существующих на сегодняшний день источников бесперебойного питания с модифицированной синусоидой. Рассмотрены схемотехнические решения, примененные разработчиками при их создании. После ознакомления с изложенным материалом, читатель, заинтересованный в приобретении ИБП для решения своих проблем, сможет изучать комплект документации к нему, не испытывая при этом затруднений. Следует при этом не забывать, что высокое изделия предполагает и более высокую его цену при покупке. - Читайте подробнее на FB.ru: https://fb.ru/article/472712/approksimirovannaya-sinusoida-v-istochnikah-bespereboynogo-elektropitaniya
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	add to the windows PATH variable using setx
+
+setx /M PATH "%PATH%;<your-new-path>"
+
+
+
+
+
+
+
+
+
+
+
+
+	chrome
+	hotkey
+
+CTRL + SHIFT + T
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+sublime_text
+
+CTRL + ALT
+
+
+
+
+
+
+
+
+
+
+
+
+
+	combine / merge PDF files
+
+
+pdftk.exe *.pdf cat output combined.pdf
+
+Another one:
+
+\\myserver\c$\path\to\pdftk.exe ^
+   c:\path\to\input1.pdf ^
+   d:\path\to\input2.pdf ^
+   cat ^
+   output ^
+   e:\path\to\combined.pdf
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+В среде Active Directory часто используются сетевые папки и файловые серверы. Эти команды отобразят список общих ресурсов на локальном хосте, список сетевых компьютеров и список шар на удаленном компьютере:
+
+> net share
+> net view
+> net view COMPUTER_NAME /all
+Но что делать, если политика безопасности запрещает использовать сетевые команды? В этом случае нас выручит wmic. Список общих ресурсов на локальном хосте и список общих ресурсов на удаленном компьютере можно посмотреть с помощью команд
+
+> wmic share get /format:list
+> wmic /node: COMPUTER_NAME share get
+Полезный инструмент для поиска данных — PowerView. Он автоматически обнаруживает сетевые ресурсы и файловые серверы с помощью команд Find-DomainShare и Get-DomainFileServer.
+
+Кстати, PowerView встроен в фреймворк PowerShell Empire и представлен двумя модулями:
+
+situational_awareness/network/powerview/share_finder;
+situational_awareness/network/powerview/get_fileserver.
+Про
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+net stop [service name] && net start [service name]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+mklink "E:\Path\Symlink_File.txt" "F:\Real_File.txt"
+
+mklink /D "E:\Path\Symlink_Books" "F:\Books"
+
+/D - allow create a symlink for directory or folder
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	How to Synchronize the Clock in Windows 10 with Internet or Atomic Time
+
+
+time.nist.gov
+
+
+w32tm /resync
+net start w32time
+w32tm /?
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+StiSvc
+windows image asquisition
+Служба завантаження зображень Windows
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	Better way to use findstr to get packet loss, batch
+
+
+@echo off
+title Restart
+color 0A
+cls
+
+:start
+Cls
+set ip=www.duck.com
+
+:Pingcheck
+echo Checking ping..
+ping %ip% -n 5 -w 1000 | findstr /C:"(0% loss" || goto Loss
+pause
+
+:NoLoss
+echo We found 0 packet loss, at %ip% on %date% at %time%
+pause
+goto start
+
+:Loss
+echo We found some packet loss.
+pause
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+net user administrator /active:yes
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+DEL /F/Q/S *.* > NUL
+
+/F -- forces the deletion of read-only files.
+/Q -- enables quiet mode. You are not ask if it is ok to delete files (if you don't use this, you are asked for any file in the folder).
+/S -- runs the command on all files in any folder under the selected structure.
+*.* -- delete all files.
+> NUL -- disables console output. This improves the process further, shaving off about one quarter of the processing time off of the console command.
+RMDIR /Q/S foldername
+
+/Q -- Quiet mode, won't prompt for confirmation to delete folders.
+/S -- Run the operation on all folders of the selected path.
+foldername -- The absolute path or relative folder name, e.g. o:/backup/test1 or test1
+
+
+
+
+
+
+DEL /F/Q/S *.* > NUL
+
+/F -- forces the deletion of read-only files.
+/Q -- enables quiet mode. You are not ask if it is ok to delete files (if you don't use this, you are asked for any file in the folder).
+/S -- runs the command on all files in any folder under the selected structure.
+*.* -- delete all files.
+> NUL -- disables console output. This improves the process further, shaving off about one quarter of the processing time off of the console command.
+RMDIR /Q/S foldername
+
+/Q -- Quiet mode, won't prompt for confirmation to delete folders.
+/S -- Run the operation on all folders of the selected path.
+foldername -- The absolute path or relative folder name, e.g. o:/backup/test1 or test1
+
+
+You need to add the batch file to a location that is a PATH environmental variable. While you may create your own variable, you may also move it to a folder that is already supported, e.g. C:\Windows.
+
+
+Tap on the Windows-key, type regedit.exe and tap in the Enter-key to open the Windows Registry Editor.
+Confirm the UAC prompt.
+Go to HKEY_CLASSES_ROOT\Directory\shell\
+Right-click on Shell and select New > Key.
+Name the key Fast Delete
+Right-click on Fast Delete, and select New > Key.
+Name the key command.
+Double-click on default of the command key.
+Add cmd /c "cd %1 && delete.bat" as the value.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#bat #cmd #script
+
+
+
+
+@ECHO ON
+
+:ping
+set i=0
+
+:noping
+If %i%==10 (
+echo %date% - %time%:Reconect>>C:\auto.log
+c:\windows\System32\devcon.exe disable "USB\VID_1076*"
+timeout /t 15
+c:\windows\System32\devcon.exe enable "USB\VID_1076*"
+timeout /t 90
+goto :ping)
+Ping -n 1 -w 1000 8.8.8.8
+If %ErrorLevel%==0 (
+
+goto :ping
+) Else (
+echo %date% - %time%:%i% ERROR>>C:\auto.log
+Ping -n 1 -w 1000 77.88.8.8|Find "TTL=">nul
+If %ErrorLevel%==0 (
+echo %date% - %time%:Error Lost>>C:\auto.log
+goto :ping
+
+) Else (
+set /A i=i+1
+
+goto :noping)
+)
+
+
+
+
+
+
+Описание скрипта:
+
+:ping
+
+:noping //это у нас метки на которые идет рекурсия при соответствующих значениях ping'a
+
+set i=0 //обнуление счетчика ошибок пинга
+
+If %i%==10 ( //Если количество не прошедших пингов 5, отключаем модем
+
+echo %date% - %time%:Reconect>>C:\auto.log //информацию об этом пишем в c:\windows\System32\devcon.exe disable "USB\VID_1076*" //команда отключения модема
+
+timeout /t 15 //пауза 15 сек
+
+c:\windows\System32\devcon.exe enable "USB\VID_1076*" //включение модема
+
+timeout /t 90 //пауза 90 сек для подключения модема к интернету
+
+goto :ping) //возврат к метке пинг
+
+Ping -n 1 -w 1000 8.8.8.8|Find "TTL=">nul //Пингуем первый сервер: 1 пинг с задержкой в 1000 миллисекунд, с проверкой на наличие в ответе строки TTL, что предохраняет от некорректного возвращения ErrorLevel в некоторых случаях
+
+If %ErrorLevel%==0 ( //Если %ErrorLevel% не показал ошибку, то возвращаемся к метке :ping
+
+
+
+goto :ping )
+Else ( //Если показал, то echo %date% - %time%:%i% ERROR>>auto.log //заносим ошибку в лог-файл
+
+Ping -n 1 -w 1000 77.88.8.8|Find "TTL=">nul //и пингуем второй сервер
+If %ErrorLevel%==0 ( //Если второй сервер отвечает, то
+echo %date% - %time%:Error Lost>>auto.log //заносим в лог информацию о потере ошибки
+goto :ping ( ///и возвращаемся к метке :ping
+
+) Else ( ///если пинга нет
+\set /A i=i+1 ( ///то увеличиваем переменную i на 1
+
+goto :noping //и идем к метке :noping) )

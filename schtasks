@@ -1,0 +1,49 @@
+schedtasks
+
+control schedtasks
+
+
+
+
+
+
+
+
+
+запуск Msg через каждую минуту
+schtasks /create /tn PE4KA /tr "C:\Windows\System32\msg * /v PE4KA" /sc minute /mo 1
+
+
+
+Задание выполняется немедленно и больше не запускается: 
+schtasks /create /tn "SysChecks" /tг c:\scripts\sch.bat /so once
+
+Задание запускается при старте системы: 
+schtasks /create /tn "SysChecks" /tr c:\scripts\sch.bat /so onstart
+
+Задание запускается при простое системы более 10 минут: 
+schtasks /create /tn "SysChecks" /tr c:\scripts\sch.bat /so onidle /1 10
+
+Задание запускается на локальном компьютере каждые 15 минут: 
+schtasks /create /tn "SysChecks" /tr c:\scripts\sch.bat /sc minute /mo 15
+
+Задание запускается на локальном компьютере каждые пять часов: 
+schtasks /create /tn "SysChecks" /tr c:\scripts\sch.bat /sc hourly /mo 5
+
+Задание запускается на локальном компьютере каждые два дня: 
+schtasks /create /tn "SysChecks" /tr c:\scripts\sch.bat /sc daily /mo 2
+
+Задание запускается через каждые две недели по понедельникам (стандартный день запуска): 
+schtasks /create /tn "SysChecks" /tr c:\scripts\sch.bat /sc weekly /то 2
+
+Задание запускается каждую неделю по понедельникам и пятницам: 
+schtasks /create /tn "SysChecks" /tr c:\scripts\sch.bat /sc weekly /d mon,fri
+
+Задание запускается первого числа каждого месяца: 
+schtasks /create /tn "SysChecks" /tr c:\scripts\sch.bat /so monthly
+
+Задание запускается пятого числа каждые два месяца: 
+schtasks /create /tn "SysChecks" /tr c:\scripts\sch.bat /sc monthly /mo 2 /d 5
+
+Задание запускается в последний день каждого месяца: 
+schtasks /create /tn "SysChecks" /tr c:\scripts\sysch.bat /sc monthly/mo lastday

@@ -1,0 +1,9 @@
+уменьшить размер папки WinSxS в Windows 10, 8.1 и 8
+
+	определить реальный размер папки WinSxS в Windows 10, 8.1 и 8
+
+Dism.exe /Online /Cleanup-Image /AnalyzeComponentSto
+
+	очистить хранилище компонентов
+
+Dism.exe /Online /Cleanup-Image /StartComponentCleanup

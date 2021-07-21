@@ -1,0 +1,23 @@
+To resolve this issue, edit the Access this computer from the network local policy on the desktop to restore the "Users" access group or add one or more user and group values to provide the required access. Alternatively this can be configured using Group Policy.
+These configuration settings are found under Computer Configuration > Windows Settings> Security Settings > Local Policies > User Rights Assignment.
+
+
+
+
+
+Windows Computers/Servers (not Domain Controllers)
+Open the Local Group Policy Editor (gpedit.msc) on the affected Windows computer/server, or the Group Policy Management Console (gpmc.msc) on the domain controller if editing the GPO for all domain-joined computers/servers. 
+If editing the GPO for all domain computers in GPMC, select Default Domain Policy. If not, skip this step.
+Navigate to Computer Configuration > Windows Settings > Security Settings > Local Policies > User Rights Assignment.
+Configure both "Allow log on locally" as well as "Allow log on through Remote Desktop Services" rights to include the users/groups that will be logging into any Windows computers/servers (not domain controllers) protected with Duo Windows Logon.
+Ensure that Deny logon locally is not applied to the same users/groups. If applied, this policy will override "Allow log on locally" and you will not be able to log in successfully. 
+Run a gpupdate /force command on the computer, or reboot the computer, to apply the group policy changes.
+
+Domain Controllers
+Open the Group Policy Management Console (gpmc.msc) on the domain controller.
+Expand your domain and then the Domain Controllers OU.
+Right-click the Default Domain Controllers Policy and select Edit.
+Navigate to Computer Configuration > Policies > Windows Settings > Security Settings > Local Policies > User Rights Assignment.
+Configure both Allow log on locally as well as Allow log on through Remote Desktop Services rights to include the users/groups that will be logging into any domain controllers protected with Duo Authentication for Windows Logon.
+Ensure that Deny logon locally is not applied to the same users/groups.
+Run a gpupdate /force command on the appropriate domain controllers to apply the policy changes.

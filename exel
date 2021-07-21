@@ -1,0 +1,8 @@
+exel
+
+
+
+
+Автоматическая нумерация в Excel
+
+=IF(ISBLANK(B3);“”;COUNTA($B$3:B3))

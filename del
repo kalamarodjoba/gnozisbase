@@ -1,0 +1,2 @@
+del /q destination\*
+for /d %x in (destination\*) do @rd /s /q "%x"

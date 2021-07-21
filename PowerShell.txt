@@ -1,0 +1,26 @@
+-------------------------------------------
+Download Files
+===========================================
+
+
+Invoke-WebRequest -uri https://gitgub.com/file.7z -OutFile C:\file.7z
+
+
+------------------------------------------------
+Remove Cortana
+================================================
+
+Get-AppxPackage *Microsoft.549981C3F5F10* | Remove-AppxPackage
+
+	Uninstall and Remove Cortana for All Users
+
+Get-appxpackage -allusers *Microsoft.549981C3F5F10* | Remove-AppxPackage
+
+	find package
+
+get-appxpackage | select-string XXX
+
+	Uninstall Cortana in Older Windows 10 versions
+
+https://winaero.com/download.php?view.1832
+

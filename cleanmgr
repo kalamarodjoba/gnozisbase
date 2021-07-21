@@ -1,0 +1,10 @@
+cleanmgr
+
+
+%systemroot%\system32\cmd.exe /c cleanmgr /sageset:65535 & cleanmgr /sagerun:65535
+
+
+cleanmgr /sageset:2020
+
+cleanmgr /sagerun:2020
+

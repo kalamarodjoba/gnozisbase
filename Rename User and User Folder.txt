@@ -1,0 +1,19 @@
+
+
+	rename user
+
+wmic useraccount list
+
+wmic useraccount where name='user' rename person
+
+wmic useraccount list full
+
+
+cd  c:\users
+rename OldAccountName NewAccountName
+
+
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\ProfileList
+
+
+ProfileImagePath

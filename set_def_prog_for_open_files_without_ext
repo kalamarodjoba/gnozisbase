@@ -1,0 +1,4 @@
+set the default program for opening files without an extension
+
+assoc .="No Extension"
+ftype "No Extension"="C:\123\bin\micro.exe" "%1"

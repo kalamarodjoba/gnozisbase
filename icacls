@@ -1,0 +1,21 @@
+icacls
+
+
+
+
+As of Vista, cacls is deprecated. Here's the first couple of help lines:
+
+C:>cacls
+NOTE: Cacls is now deprecated, please use Icacls.
+
+Displays or modifies access control lists (ACLs) of files
+You should use icacls instead. This is how you grant John full control over D:\test folder and all its subfolders:
+
+C:>icacls “D:\test” /grant John:(OI)(CI)F /T
+According do MS documentation:
+
+F = Full Control
+CI = Container Inherit – This flag indicates that subordinate containers will inherit this ACE.
+OI = Object Inherit – This flag indicates that subordinate files will inherit the ACE.
+/T = Apply recursively to existing files and sub-folders. (OI and CI only apply to new files and sub-folders). Credit: comment by @AlexSpence.
+For complete documentation, you may run “icacls” with no arguments or see the Microsoft documentation here and here

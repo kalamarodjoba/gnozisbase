@@ -1,0 +1,3 @@
+CertUtil
+
+certutil -hashfile file.iso SHA1

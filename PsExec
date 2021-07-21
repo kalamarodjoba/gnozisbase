@@ -1,0 +1,8 @@
+PsExec
+
+
+PsExec \\192.168.0.2 cmd
+
+
+psexec -u Администратор -p password путь_к_program.exe
+psexec -u Администратор -p password "cmd.exe" /c start путь_к_программе_с_запросом_uac

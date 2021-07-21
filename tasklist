@@ -1,0 +1,18 @@
+tasklist
+
+
+
+tasklist /fi "USERNAME eq Martin"
+returns the list of processes run under the user Martin.
+
+tasklist /fi "USERNAME ne NT AUTHORITY\SYSTEM" /fi "STATUS eq running"
+returns all processes that are running under system processes.
+
+tasklist /fi "MODULES eq nt*"
+Lists all processes that have a DLL that begins with nt.
+
+tasklist /fi "PID gt 2000"
+displays all processes with an ID greater than 2000.
+
+tasklist /fi "MEMUSAGE gt 4096"
+lists all processes whose memory usage is greater than 4096 Kilobytes.

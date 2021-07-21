@@ -1,0 +1,23 @@
+firewall
+
+
+блокировать весь исходящий трафик:
+
+С панелью управления Брандмауэра Windows: Откройте Панель управления > Система и безопасность > Брандмауэр Windows. Нажмите “Свойства Брандмауэра Windows”. Установите для всех” исходящих соединений “значение” блокировать “ (по умолчанию-разрешить). Сделайте это для всех профилей, выбрав вкладки. Нажмите кнопку” Применить “ ниже, чтобы применить это состояние брандмауэра.
+
+С командной строкой: выполните эту команду как администратор:
+
+netsh advfirewall set allprofiles firewallpolicy blockinbound,blockoutbound
+
+разрешить систему и Chrome: выше установка блокирует все соединения, в том числе из системы и службы DNS Хоста. Разрешить систему и Chrome со следующими командами в качестве администратора. Пусть путь к исполняемому файлу Chrome будет “E:\Chrome\chrome.исполняемый.” Заменить его своим.
+
+netsh advfirewall firewall add rule Name=System Program=System Action=allow Dir=Out
+netsh advfirewall firewall add rule Name=Chrome Program=“E:\Chrome\chrome.exe” Action=allow Dir=Out
+удалить службу кэша DNS: как вышеуказанное положение брандмауэра блокировать службу DNS, приложения не могут отправить запрос DNS. Поэтому, удалив службу кэша DNS, Вы разрешаете всем приложениям отправлять / получать DNS-пакеты независимо. Первая резервная копия реестра “HKEYLOCALMACHINE\SYSTEM\CurrentControlSet\Services\Dnscache” из редактора реестра. Теперь удалите службу кэша DNS с помощью следующих команд от имени администратора.
+
+sc.exe stop “Dnscache”
+sc.exe delete “Dnscache”
+reg.exe delete “HKLM\SYSTEM\CurrentControlSet\Services\Dnscache” /F
+
+перезагрузите компьютер, чтобы изменения вступили в силу. 
+Смотри Netsh AdvFirewall Брандмауэр Команды для дальнейшего чтения.

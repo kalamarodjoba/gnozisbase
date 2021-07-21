@@ -1,0 +1,59 @@
+netsh wlan show profiles
+
+netsh interface ipv4 set address name="Wi-Fi" static 192.168.0.2 255.255.255.0 192.168.0.1
+
+Uses the interface name “Wi-Fi”
+Sets the IP address to 192.168.3.1
+Sets the subnet mask to 255.255.255.0
+Sets the default gateway to 192.168.3.1
+
+netsh interface ipv4 set address name=”YOUR INTERFACE NAME” source=dhcp
+
+
+
+ipconfig /renew
+
+
+	set DNS name
+
+netsh interface ipv4 set dns name="Wi-Fi" static 1.1.1.3
+netsh interface ipv4 set dns name="Wi-Fi" static 1.0.0.3 index=2
+
+
+
+
+	Importing and Exporting Windows Network Settings
+	Импорт и Єкспорт Настроек Сети
+
+netsh -c interface dump > PATH_AND_FILENAME.txt
+netsh -f PATH_AND_FILENAME.txt
+
+
+
+netsh interface ip show config
+
+
+
+
+netsh interface ipv4 set address name="Wi-Fi" source=dhcp
+netsh interface ipv4 set dnsservers name="Wi-Fi" source=dhcp
+
+	Following commands configure static IP address and DNS-servers:
+
+netsh interface ipv4 set address name="Wi-Fi" static 192.168.1.2 255.255.255.0 192.168.1.1
+netsh interface ipv4 set dns name="Wi-Fi" static 8.8.8.8
+netsh interface ipv4 set dns name="Wi-Fi" static 8.8.4.4 index=2
+
+
+
+
+
+
+	show Wifi password
+netsh wlan show profile * key=clear
+netsh wlan show profile WIFI key=clear | findstr "Key Content"
+
+
+
+netsh interface set interface name="Wi-Fi" admin=ENABLED
+netsh interface set interface name="Wi-Fi" admin=DISABLED

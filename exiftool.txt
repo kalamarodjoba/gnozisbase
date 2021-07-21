@@ -1,0 +1,5 @@
+
+https://exiftool.org/
+
+
+exiftool -all= image.jpg

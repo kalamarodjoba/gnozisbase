@@ -1,0 +1,3 @@
+	удалить принтер
+
+printui.exe /dl /n "YOUR-PRINTER-NAME"

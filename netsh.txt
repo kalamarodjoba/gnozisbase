@@ -1,0 +1,150 @@
+netsh interface ip show config
+
+netsh -c interface dump > c:\location1.txt
+
+
+	import 
+
+netsh -f c:\location1.txt
+
+
+
+
+	reset
+
+netsh int ip reset
+net
+
+
+
+netsh interface ip set dns "Local Area Connection" dhcp
+
+
+
+Enable the automatic acquisition of ip-address, netmask and gateway from the DHCP server:
+
+netsh interface ip set address "Local Area Connection" dhcp
+
+
+
+----
+
+
+netsh wlan show profiles
+
+
+
+
+
+
+
+
+
+Приходилось ли вам когда-нибудь перемещать свой ноутбук с места на место (к примеру, с работы домой, из одной сети WAP в другую, из беспроводной в проводную сеть Ethernet) и обнаруживать при этом, что он не меняет IP-адреса? По какой-то причине компьютер «привык» к старому IP-адресу и, поскольку этот старый адрес «ничего не стоит» на новом месте, вы даже не сможете успешно выполнить переброску информации. В таком случае данная команда Netsh:
+
+netsh int ip reset C:\ iplog.txt 
+
+- просто незаменима. В данной ситуации она играет роль птицы Феникс для IP, так как освобождает адрес IP и быстро перестраивает его. C:\iplog.txt  — это имя текстового файла, которое будет использовать команда Netsh для отчета о своих действиях. По некоторым причинам наличие файла журнала является обязательным: вы обязаны задать имя файла, чтобы команда Netsh смогла выполнить процедуру регистрации своих действий. Едва ли не первое, что я делаю, приступая к поиску неисправностей в системе, — запускаю команду Netsh, о которой, видимо, мало кто знает. Я ввожу на клавиатуре:
+
+
+
+
+
+
+
+
+====================================================================
+
+
+
+netsh wlan show profile * key=clear | findstr /C:"Key Content"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+netsh advfirewall set allprofile
+
+netsh advfirewall firewall add rule dir=in action=block protocol=TCP localport=445 name="Block_TCP-445"
+
+
+---------------------
+
+
+netsh advfirewall firewall add rule name=»blockTCP» dir=in action=block protocol=TCP localport=1024-1035,135,139,445
+
+netsh advfirewall firewall add rule name=»blockUDP» dir=in action=block protocol=UDP localport=1024-1035,135,139,445
+
+
+TCP порт 139, необходимый для удаленного подключения и управления ПК;
+TCP порт 135, предназначенный для выполнения команд;
+TCP порт 445, позволяющий быстро передавать файлы;
+UDP порт 137, с помощью которого проводится быстрый поиск на ПК.
+
+
+Появится рабочее окно с чёрным фоном, в котором необходимо поочередно вводить нижеприведенные команды. После каждой введенной строчки нажимайте клавишу Enter для подтверждения действия.
+
+netsh advfirewall firewall add rule dir=in action=block protocol=tcp localport=135 name=»Block1_TCP-135″
+(команда для закрытия порта 135)
+
+netsh advfirewall firewall add rule dir=in action=block protocol=tcp localport=137 name=»Block1_TCP-137″
+(команда для закрытия порта 137)
+
+netsh advfirewall firewall add rule dir=in action=block protocol=tcp localport=138 name=»Block1_TCP-138″
+(команда для закрытия порта 138)
+
+netsh advfirewall firewall add rule dir=in action=block protocol=tcp localport=139 name=»Block_TCP-139″
+(команда для закрытия порта 139)
+
+netsh advfirewall firewall add rule dir=in action=block protocol=tcp localport=445 name=»Block_TCP-445″
+(команда для закрытия порта 445)
+
+netsh advfirewall firewall add rule dir=in action=block protocol=tcp localport=5000 name="Block_TCP-5000″
+
+Шесть приведенных нами команд необходимы для: закрытия 4х уязвимых TCP-портов Windows (открытых по умолчанию), закрытия UDP-порта 138, а также закрытия порта 5000, который отвечает за выведение списка доступных сервисов.
+
+
+
+
+
+

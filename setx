@@ -1,0 +1,5 @@
+setx
+
+You can permanently add a path to PATH with the setx command:
+
+setx /M path "%path%;C:\your\path\"

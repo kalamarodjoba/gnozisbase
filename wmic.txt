@@ -1,0 +1,9 @@
+	get serial number
+
+WMIC BIOS GET SERIALNUMBER
+
+
+
+	get product key
+
+wmic path softwarelicensingservice get OA3xOriginalProductKey

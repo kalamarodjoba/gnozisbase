@@ -1,0 +1,30 @@
+Cloudflare
+
+Malware Blocking Only
+Primary DNS: 1.1.1.2
+Secondary DNS: 1.0.0.2
+
+Malware and Adult Content
+Primary DNS: 1.1.1.3
+Secondary DNS: 1.0.0.3
+
+
+
+For IPv6 use:
+
+Malware Blocking Only
+Primary DNS: 2606:4700:4700::1112
+Secondary DNS: 2606:4700:4700::1002
+
+Malware and Adult Content
+Primary DNS: 2606:4700:4700::1113
+Secondary DNS: 2606:4700:4700::1003
+
+
+
+
+
+Google DNS
+
+8.8.8.8
+8.8.4.4

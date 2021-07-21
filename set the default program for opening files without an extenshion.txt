@@ -1,0 +1,19 @@
+set the default program for opening files without an extenshion
+
+assoc .="No Extension"
+ftype "No Extension"="C:\path\to\my editor.exe" "%1"
+
+Restart the computer for the changes to take effect.
+
+To give credit, I learned this from the vim wikia here and here
+
+Extra info:
+
+Instead of "C:\path\to\...", the following macros may be useful:
+
+%SystemDrive% - drive windows is installed on, i.e. C:\
+%ProgramFiles% - e.g. "C:\Program Files\"
+%ProgramFiles(x86)% - e.g. "C:\Program Files (x86)\"
+You will need to properly escape them though:
+
+ftype "No Extension"=^"^%ProgramFiles(x86)^%\Notepad++\notepad++.exe^" "%1"

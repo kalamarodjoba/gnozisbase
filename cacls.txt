@@ -1,0 +1,1 @@
+cacls c:\Shared /e /p Everyone:f

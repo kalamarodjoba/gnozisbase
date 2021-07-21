@@ -1,0 +1,15 @@
+ren
+
+
+ren *.file-extension ???-file-name.*
+rename all the files with the specific extension by leaving the first three characters of the old names and appending other content to the name.
+
+ren *.* ?????.*
+rename files by trimming the old names longer than five characters.
+
+ren old-file-name-part*.* new-filename-part*.*
+rename files by replace a part of the old names with a new part.
+
+ren "GoodBay.txt" "////*.txt"
+GoodBay.txt -> Bay.txt
+

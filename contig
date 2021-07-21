@@ -1,0 +1,8 @@
+contig
+
+defrag
+
+
+contig -v -s C:\*
+
+contig -v -s C:\*, $mft, $LogFile, $Volume, $Attrdef, $Bitmap, $Boot, $BadClus, $Secure, $UpCase, $Extend
